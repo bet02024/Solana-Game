@@ -1,0 +1,13 @@
+diff --git a/node_modules/@solana/wallet-adapter-react-ui/src/Button.tsx b/node_modules/@solana/wallet-adapter-react-ui/src/Button.tsx
+index 0d5d182..1b14db1 100644
+--- a/node_modules/@solana/wallet-adapter-react-ui/src/Button.tsx
++++ b/node_modules/@solana/wallet-adapter-react-ui/src/Button.tsx
+@@ -14,7 +14,7 @@ export type ButtonProps = PropsWithChildren<{
+ export const Button: FC<ButtonProps> = (props) => {
+     return (
+         <button
+-            className={`wallet-adapter-button ${props.className || ''}`}
++            className={`${props.className || ''}`}
+             disabled={props.disabled}
+             onClick={props.onClick}
+             tabIndex={props.tabIndex || 0}

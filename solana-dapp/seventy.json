@@ -1,0 +1,262 @@
+{
+  "version": "0.1.0",
+  "name": "luckybastard",
+  "instructions": [
+    {
+      "name": "setup",
+      "accounts": [
+        {
+          "name": "seventy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "player",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "vendor",
+          "type": "publicKey"
+        },
+        {
+          "name": "betAmount",
+          "type": "u64"
+        },
+        {
+          "name": "betAmountJack",
+          "type": "u64"
+        },
+        {
+          "name": "playerChoice",
+          "type": "u64"
+        },
+        {
+          "name": "playerChoiceJack",
+          "type": "u64"
+        },
+        {
+          "name": "playerSeed",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "play",
+      "accounts": [
+        {
+          "name": "seventy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vendor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "player",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "vault",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "vendorSeed",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "delete",
+      "accounts": [
+        {
+          "name": "seventy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vendor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "player",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Seventy",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "players",
+            "type": {
+              "array": [
+                "publicKey",
+                2
+              ]
+            }
+          },
+          {
+            "name": "playerSeed",
+            "type": "i64"
+          },
+          {
+            "name": "state",
+            "type": {
+              "defined": "SeventyState"
+            }
+          },
+          {
+            "name": "betAmount",
+            "type": "u64"
+          },
+          {
+            "name": "playerChoice",
+            "type": "u64"
+          },
+          {
+            "name": "betAmountJack",
+            "type": "u64"
+          },
+          {
+            "name": "playerChoiceJack",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "SeventyState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Finished",
+            "fields": [
+              {
+                "name": "winner",
+                "type": "publicKey"
+              },
+              {
+                "name": "winner_jack",
+                "type": "publicKey"
+              },
+              {
+                "name": "dice1",
+                "type": "u8"
+              },
+              {
+                "name": "dice2",
+                "type": "u8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Side",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Seventy"
+          },
+          {
+            "name": "UnderSeventy"
+          },
+          {
+            "name": "OverSeventy"
+          },
+          {
+            "name": "UnderSeventy50"
+          },
+          {
+            "name": "OverSeventy50"
+          },
+          {
+            "name": "JackPot2"
+          },
+          {
+            "name": "JackPot12"
+          },
+          {
+            "name": "JackPot3"
+          },
+          {
+            "name": "JackPot11"
+          },
+          {
+            "name": "JackPotNone"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InsuficientRewardBalance",
+      "msg": "Insuficient rewards balance, try with an smaller amount."
+    }
+  ],
+  "metadata": {
+    "address": "jpPgS1rgmshnvMt4uCPThbRDXfGiAperPb7aoW1q2gk"
+  }
+}
